@@ -6,12 +6,6 @@ VERSION = open(os.path.join(BASEDIR, 'VERSION')).read().strip()
 
 # Dependencies (format is 'PYPI_PACKAGE_NAME[>=]=VERSION_NUMBER')
 BASE_DEPENDENCIES = [
-    'wf-pose-tracking-3d>=0.1.0',
-    'wf-minimal-honeycomb-python>=0.4.0',
-    'wf-geom-render>=0.3.0',
-    'python-dateutil>=2.8.1',
-    'pandas>=0.25.3',
-    'numpy>=1.18.1'
 ]
 
 # TEST_DEPENDENCIES = [
@@ -24,22 +18,22 @@ BASE_DEPENDENCIES = [
 os.chdir(os.path.normpath(BASEDIR))
 
 setup(
-    name='wf-process-pose-data',
+    name='PYPI_PACKAGE_NAME',
     packages=find_packages(),
     version=VERSION,
     include_package_data=True,
-    description='Tools for fetching, processing, visualizing, and analyzing Wildflower human pose data',
+    description='SHORT_DESCRIPTION',
     long_description=open('README.md').read(),
-    url='https://github.com/WildflowerSchools/wf-process-pose-data',
-    author='Theodore Quinn',
-    author_email='ted.quinn@wildflowerschools.org',
+    url='GITHUB_URL',
+    author='AUTHOR_FULL_NAME',
+    author_email='AUTHOR_EMAIL_ADDRESS',
     install_requires=BASE_DEPENDENCIES,
     # tests_require=TEST_DEPENDENCIES,
     # extras_require = {
     #     'test': TEST_DEPENDENCIES,
     #     'local': LOCAL_DEPENDENCIES
     # },
-    keywords=['pose estimation'],
+    keywords=[],
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',

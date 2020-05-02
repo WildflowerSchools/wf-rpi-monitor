@@ -1,1 +1,1 @@
-from process_pose_data.core import *
+from MODULE_NAME.core import *

@@ -1,3 +1,3 @@
-# process_pose_data
+# MODULE_NAME
 
-Tools for fetching, processing, visualizing, and analyzing Wildflower human pose data
+SHORT_DESCRIPTION
