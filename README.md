@@ -1,3 +1,3 @@
-# MODULE_NAME
+# rpi_monitor
 
-SHORT_DESCRIPTION
+Tools to monitor and log status of a Raspberry Pi
