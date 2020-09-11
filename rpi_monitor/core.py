@@ -2,8 +2,42 @@ import psutil
 import re
 import datetime
 from collections import OrderedDict
+import csv
 import os
 import time
+
+FIELD_NAMES = [
+    'timestamp',
+    'cpu_count',
+    'cpu_percent',
+    'cpu_freq_psutil',
+    'clock_arm_vcgencmd',
+    'temp_celsius_psutil',
+    'temp_high_psutil',
+    'temp_critical_psutil',
+    'temp_vcgencmd',
+    'voltage_core',
+    'throttled_undervoltage',
+    'throttled_arm_freq_capped',
+    'throttled_currently_throttled',
+    'throttled_soft_temp_limit_active',
+    'throttled_undervoltage_has_occurred',
+    'throttled_arm_freq_capping_has_occurred',
+    'throttled_throttling_has_occurred',
+    'throttled_soft_temp_limit_has_occurred',
+    'virtual_memory_total',
+    'virtual_memory_available',
+    'virtual_memory_percent',
+    'virtual_memory_used',
+    'virtual_memory_free',
+    'virtual_memory_active',
+    'virtual_memory_inactive',
+    'virtual_memory_buffers',
+    'virtual_memory_cached',
+    'virtual_memory_shared',
+    'virtual_memory_slab',
+    'fetch_time_ms'
+]
 
 THROTTLED_UNDERVOLTAGE_BIT_NUMBER = 0
 THROTTLED_ARM_FREQ_CAPPED_BIT_NUMBER = 1
@@ -13,6 +47,24 @@ THROTTLED_UNDERVOLTAGE_HAS_OCCURRED_BIT_NUMBER = 16
 THROTTLED_ARM_FREQ_CAPPING_HAS_OCCURRED_BIT_NUMBER = 17
 THROTTLED_THROTTLING_HAS_OCCURRED_BIT_NUMBER = 18
 THROTTLED_SOFT_TEMP_LIMIT_HAS_OCCURRED_BIT_NUMBER = 19
+
+def log_rpi_status_csv(
+    path,
+    interval=30
+):
+    print(FIELD_NAMES)
+    print(type(FIELD_NAMES))
+    print('Hello!')
+    with open(path, 'w', newline='') as csvfile:
+        writer = csv.DictWriter(
+            f=csvfile,
+            fieldnames=FIELD_NAMES
+        )
+        writer.writeheader()
+        while True:
+            rpi_status = get_rpi_status()
+            writer.writerow(rpi_status)
+            time.sleep(interval)
 
 def get_rpi_status():
     data = OrderedDict()
