@@ -52,9 +52,6 @@ def log_rpi_status_csv(
     path,
     interval=30
 ):
-    print(FIELD_NAMES)
-    print(type(FIELD_NAMES))
-    print('Hello!')
     with open(path, 'w', newline='') as csvfile:
         writer = csv.DictWriter(
             f=csvfile,
