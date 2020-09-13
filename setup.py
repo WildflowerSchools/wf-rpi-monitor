@@ -6,7 +6,8 @@ VERSION = open(os.path.join(BASEDIR, 'VERSION')).read().strip()
 
 # Dependencies (format is 'PYPI_PACKAGE_NAME[>=]=VERSION_NUMBER')
 BASE_DEPENDENCIES = [
-    'psutil>=5.7.2'
+    'psutil>=5.7.2',
+    'click>=7.1.2'
 ]
 
 # TEST_DEPENDENCIES = [
@@ -34,6 +35,10 @@ setup(
     #     'test': TEST_DEPENDENCIES,
     #     'local': LOCAL_DEPENDENCIES
     # },
+    entry_points='''
+        [console_scripts]
+        log_rpi_status=rpi_monitor.workers:log_rpi_status
+    ''',
     keywords=['rpi'],
     classifiers=[
         'Intended Audience :: Developers',
