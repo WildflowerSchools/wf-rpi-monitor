@@ -13,3 +13,15 @@ def log_rpi_status(
         path,
         interval
     )
+
+@click.command()
+@click.option('-n', type=int, default=10000, show_default=True, help='Fibonacci number to repeatedly calculate')
+@click.option('--num_processes', type=int, help='Number of parallel processes to launch [default: number of cores]')
+def fibonacci_test(
+    n,
+    num_processes
+):
+    rpi_monitor.tests.fibonacci_test(
+        n=n,
+        num_processes=num_processes
+    )

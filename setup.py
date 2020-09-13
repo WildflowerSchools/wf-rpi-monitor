@@ -38,6 +38,7 @@ setup(
     entry_points='''
         [console_scripts]
         log_rpi_status=rpi_monitor.workers:log_rpi_status
+        fibonacci_test=rpi_monitor.workers:fibonacci_test
     ''',
     keywords=['rpi'],
     classifiers=[
