@@ -227,30 +227,3 @@ def get_voltage_core_vcgencmd():
     if voltage_core_match:
         voltage_core = float(voltage_core_match.group('voltage_core_string'))
     return voltage_core
-
-def get_rpi_status():
-    data = OrderedDict()
-    fetch_start=time.time()
-    timestamp = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
-    data['timestamp'] = timestamp
-    cpu_count_psutil = get_cpu_count_psutil()
-    data['cpu_count'] = cpu_count_psutil
-    cpu_percent_psutil = get_cpu_percent_psutil()
-    data['cpu_percent'] = cpu_percent_psutil
-    cpu_freq_psutil = get_cpu_freq_psutil()
-    data['cpu_freq_psutil'] = cpu_freq_psutil
-    clock_arm_vcgencmd = get_clock_arm_vcgencmd()
-    data['clock_arm_vcgencmd'] = clock_arm_vcgencmd
-    temp_psutil = get_temp_psutil()
-    data.update(temp_psutil)
-    temp_vcgencmd = get_temp_vcgencmd()
-    data['temp_vcgencmd'] = temp_vcgencmd
-    voltage_core_vcgencmd = get_voltage_core_vcgencmd()
-    data['voltage_core'] = voltage_core_vcgencmd
-    throttling_vcgencmd = get_throttling_vcgencmd()
-    data.update(throttling_vcgencmd)
-    virtual_memory_psutil = get_virtual_memory_psutil()
-    data.update(virtual_memory_psutil)
-    fetch_time_ms = 1000*(time.time() - fetch_start)
-    data['fetch_time_ms'] = fetch_time_ms
-    return data
