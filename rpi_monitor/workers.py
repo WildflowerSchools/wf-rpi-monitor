@@ -25,3 +25,18 @@ def fibonacci_test(
         n=n,
         num_processes=num_processes
     )
+
+@click.command()
+@click.option('-d', '--delay', type=int, default=5, show_default=True, help='Number of seconds to wait before returning')
+@click.option('--num_processes', type=int, help='Number of parallel processes to launch [default: number of cores]')
+@click.option('--log-level', help='Log level (e.g., warning, info, debug, etc.)')
+def sleep_test(
+    delay,
+    num_processes,
+    log_level=None
+):
+    rpi_monitor.tests.sleep_test(
+        delay=delay,
+        num_processes=num_processes,
+        log_level=log_level
+    )

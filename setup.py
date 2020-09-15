@@ -39,6 +39,7 @@ setup(
         [console_scripts]
         log_rpi_status=rpi_monitor.workers:log_rpi_status
         fibonacci_test=rpi_monitor.workers:fibonacci_test
+        sleep_test=rpi_monitor.workers:sleep_test
     ''',
     keywords=['rpi'],
     classifiers=[

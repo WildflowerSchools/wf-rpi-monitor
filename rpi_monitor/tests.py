@@ -1,5 +1,9 @@
 
 import multiprocessing
+import time
+import logging
+
+logger = logging.getLogger(__name__)
 
 def fibonacci_test(n, num_processes=None):
     if num_processes is None:
@@ -20,3 +24,28 @@ def fibonacci(n):
         n1 = n2
         n2 = n
     return n
+
+def sleep_test(delay=5, num_processes=None, parallel=True, log_level=None):
+    if log_level is not None:
+        numeric_log_level = getattr(logging, log_level.upper(), None)
+        if not isinstance(numeric_log_level, int):
+            raise ValueError('Invalid log level: %s'.format(log_level))
+        logging.basicConfig(level=numeric_log_level)
+    if parallel:
+        if num_processes is None:
+            num_cpus = multiprocessing.cpu_count()
+            logger.info('Number of processes not specified. Defaulting to {}'.format(num_cpus))
+            num_processes = num_cpus
+        with multiprocessing.Pool(num_processes) as p:
+            _ = list(p.imap(sleep, infinite_generator(delay), chunksize=1))
+    else:
+        _ = list(map(sleep, infinite_generator(delay)))
+
+def sleep(delay):
+    logger.info('Test launched. Sleeping for {} seconds'.format(delay))
+    print('Test launched. Sleeping for {} seconds'.format(delay))
+    time.sleep(delay)
+
+def infinite_generator(x):
+    while True:
+        yield x
